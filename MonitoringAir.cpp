@@ -44,11 +44,9 @@ void setup() {
     ESP_LOGI("SETUP", "Create freertos task!");
 
     // Create RTOS task
-    xTaskCreate(SensorTask, "DHT11 Task", 2048, NULL, 1, &sensorInputHandle);
+    xTaskCreate(SensorTask, "Sensor Task", 2048, NULL, 1, &sensorInputHandle);
     xTaskCreate(ledTask, "LED Task", 2048, NULL, 2, &ledTaskHandle);
-
-    //error nya ketika execute code dibawah ini:
-    // xTaskCreate(FirebaseSet, "Firebase Task", 2048, NULL, 2, &firebaseSetHandle);
+    xTaskCreate(FirebaseSet, "Firebase Task", 8192, NULL, 2, &firebaseSetHandle);
 }
 
 void loop() {
@@ -112,7 +110,7 @@ void setupWifi() {
 
     Serial.printf("Firebase Client v%s\n\n", FIREBASE_CLIENT_VERSION);
 
-    //Connect to Firebase
+  /* Assign the api key (required) */
     config.api_key = API_KEY;
 
     config.database_url = DATABASE_URL;
