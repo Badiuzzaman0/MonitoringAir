@@ -46,6 +46,8 @@ void setup() {
     // Create RTOS task
     xTaskCreate(SensorTask, "DHT11 Task", 2048, NULL, 1, &sensorInputHandle);
     xTaskCreate(ledTask, "LED Task", 2048, NULL, 2, &ledTaskHandle);
+
+    //error nya ketika execute code dibawah ini:
     // xTaskCreate(FirebaseSet, "Firebase Task", 2048, NULL, 2, &firebaseSetHandle);
 }
 
